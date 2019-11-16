@@ -33,3 +33,13 @@ def edit_project(id: int, data: dict):
 
     return worker
 
+
+@app.put("/workorder/assign")
+def assign_worker(id: int, workerId: int):
+    return db.assign_worker(order_id=id, worker_id=workerId)
+
+
+@app.post("/worker/")
+def add_worker(worker: Worker):
+    id = db.add_worker(worker)
+    return db.get_worker_by_id(id)

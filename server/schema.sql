@@ -4,6 +4,7 @@ USE `reportmaster`;
 CREATE TABLE `work_order`
 (
 `id` INTEGER AUTO_INCREMENT,
+`owner_id` TEXT,
 `status` ENUM('new', 'details requested','ready for work','assigned','delayed','failed','finished','feedback received') NOT NULL,
 `data` TEXT NOT NULL,
 `category` TEXT NOT NULL,
@@ -16,8 +17,8 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE `worker`
 (
-`aindex` INTEGER AUTO_INCREMENT,
+`id` INTEGER AUTO_INCREMENT,
 `name` TEXT,
 `role` TEXT,
-PRIMARY KEY (`aindex`)
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 PACK_KEYS=1;

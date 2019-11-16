@@ -2,6 +2,7 @@ import pymysql.cursors
 import os
 
 from reportmaster.work_order import WorkOrder
+from reportmaster.worker import Worker
 
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "mysql")
 DB_HOST = os.environ.get("DB_HOST", "localhost")
@@ -15,25 +16,45 @@ def create_work_order(work_order):
     """
     sql = (
         "INSERT INTO `work_order` "
-        "(`status`, `data`, `category`, `hour_restrictions`) "
-        "VALUES (%(status)s,%(data)s,%(category)s,%(hour_restrictions)s)"
+        "(`status`, `data`, `category`, `hour_restrictions`, `owner_id`) "
+        "VALUES (%(status)s,%(data)s,%(category)s,%(hour_restrictions)s,%(owner_id)s)"
     )
     return _insert_sql(sql, work_order.to_db())
 
 
 def get_work_order_by_id(id):
     sql = "SELECT * FROM `work_order` WHERE id = %(id)s"
-    print(f"FETCHING ID {id}")
     data = _fetch_one(sql, dict(id=id))
     if not data:
         return None
-    print(f"{data}")
+    worker_id = data.get("worker_id", None)
+    if worker_id:
+        worker = get_worker_by_id(worker_id)
+        return WorkOrder.from_db(data, worker)
     return WorkOrder.from_db(data)
 
 
 def update_work_order_data(work_order):
     sql = "UPDATE `work_order` SET `data` = `%(data)s` WHERE id = %(id)s"
     _insert_sql(sql, work_order.to_db())
+
+
+def add_worker(worker):
+    sql = "INSERT INTO `worker` (`name`, `role`) VALUES (%(name)s,%(role)s)"
+    return _insert_sql(sql, worker.dict())
+
+
+def get_worker_by_id(id):
+    sql = "SELECT * FROM `worker` WHERE id = %(id)s"
+    data = _fetch_one(sql, dict(id=id))
+    return Worker(**data)
+
+
+def assign_worker(order_id, worker_id):
+    print(f"{order_id} {worker_id}")
+    sql = "UPDATE `work_order` SET `worker_id` = %(worker_id)s WHERE id = %(order_id)s"
+    _insert_sql(sql, dict(order_id=order_id, worker_id=worker_id))
+    return get_work_order_by_id(order_id)
 
 
 def _insert_sql(sql, data):
