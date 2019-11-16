@@ -13,6 +13,11 @@ async def read_root():
     return {"Hello": "World"}
 
 
+@app.get("/workorder/list/")
+def list_workorders(owner: str):
+    return db.get_work_orders_by_owner(owner)
+
+
 @app.post("/workorder/")
 def post_project(work_order: WorkOrder):
     id = db.create_work_order(work_order)
@@ -25,12 +30,18 @@ def get_project(id: int):
     return db.get_work_order_by_id(id)
 
 
-@app.put("/workorder/updateData/")
-def edit_project(id: int, data: dict):
-    worker = db.get_work_order_by_id(id)
-    worker.data = data
+@app.put("/workorder/update/")
+def edit_project(id: int, data: dict = None, status: str = None):
+    work_order = db.get_work_order_by_id(id)
+    if data:
+        print(data)
+        work_order.data = data
+        db.update_work_order_data(work_order)
+    if status:
+        work_order.status = status
+        db.update_work_order_status(work_order)
 
-    return worker
+    return db.get_work_order_by_id(id)
 
 
 @app.put("/workorder/assign")

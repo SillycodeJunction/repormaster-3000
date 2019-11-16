@@ -35,7 +35,12 @@ def get_work_order_by_id(id):
 
 
 def update_work_order_data(work_order):
-    sql = "UPDATE `work_order` SET `data` = `%(data)s` WHERE id = %(id)s"
+    sql = "UPDATE `work_order` SET `data` = %(data)s WHERE id = %(id)s"
+    _insert_sql(sql, work_order.to_db())
+
+
+def update_work_order_status(work_order):
+    sql = "UPDATE `work_order` SET `status` = %(status)s WHERE id = %(id)s"
     _insert_sql(sql, work_order.to_db())
 
 
@@ -50,6 +55,14 @@ def get_worker_by_id(id):
     if not data:
         return None
     return Worker(**data)
+
+
+def get_work_orders_by_owner(owner):
+    sql = "SELECT * FROM `work_order` WHERE owner_id = %(owner)s"
+    data = _fetch_all(sql, dict(owner=owner))
+    if not data:
+        return None
+    return [WorkOrder.from_db(d) for d in data]
 
 
 def assign_worker(order_id, worker_id):
@@ -75,6 +88,16 @@ def _fetch_one(sql, data):
         with connection.cursor() as cursor:
             cursor.execute(sql, data)
             return cursor.fetchone()
+    finally:
+        connection.close()
+
+
+def _fetch_all(sql, data):
+    connection = _connect()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
     finally:
         connection.close()
 
