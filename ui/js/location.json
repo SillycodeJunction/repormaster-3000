@@ -1,0 +1,22 @@
+const datas = [
+    {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [60.1742881,24.9044259]
+        },
+        "properties": {
+            "Name": "Hietarannan uimaranta",
+            "Description": ""
+        },
+    },
+    {
+        "geometry": {
+        "type": "Point",
+        "coordinates": [60.2162547,25.1094344]
+    },
+        "properties": {
+            "Name": "Päiväkoti Viikinki",
+            "Description": ""
+        },
+    }
+]

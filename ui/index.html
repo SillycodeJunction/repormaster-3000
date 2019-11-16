@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://cdn.rawgit.com/brandonxiang/leaflet.geoJsonFilter/develop/src/L.geoJsonFilter.js"></script>
+    <link rel="stylesheet" href="output.css">
+    <title>Reportmaster 3000</title>
+</head>
+<body>
+    <section>
+        <header class="bg-brand-blue wave-bottom relative py-8">
+            <div class="container mx-auto">
+                <div class="flex flex-col sm:flex-row justify-between content-center">
+                    <div class="flex-1 flex">
+                        <img class="w-24 mr-6" src="https://www.hel.fi/wps/wcm/connect/50249dfa-cfc1-46fe-84c5-25afaa8b9cab/stara_tunnus_Nega_verkkosivuille_3.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE-50249dfa-cfc1-46fe-84c5-25afaa8b9cab-mIwVXes" alt="">
+                        <div class="text-white text-xl font-medium">Repairs platform</div>
+                    </div>
+                    <div class="flex-1 flex-row flex items-center content-center">
+                        <a href="" class="text-white text-l font-medium pr-8">Insights</a>
+                        <a href="" class="text-white text-l font-medium">Work Orders</a>
+                        <a href="" class="text-white text-l font-medium" style="margin-left:auto;">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+    <section>
+        <div class="container mx-auto pt-16">
+            <h1 class="text-5xl font-extrabold">Insights</h1>
+            <div class="flex flex-wrap my-8">
+                
+                <div class="pr-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                    Order dates
+                    </label>
+                    <div class="relative">
+                        <select id="filter1" class="mr-8 py-2 px-2 pr-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option value="all">Select one</option>
+                            <option value="value1">1</option>
+                            <option value="value2">2</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Project status
+                    </label>
+                    <div class="relative">
+                        <select id="filter2" class="mr-8 py-2 px-2 pr-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option value="">Select one</option>
+                            <option value="value1">1</option>
+                            <option value="value2">2</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Type
+                    </label>
+                    <div class="relative">
+                        <select id="filter3" class="mr-8 py-2 px-2 pr-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option value="">Select one</option>
+                            <option value="value1">1</option>
+                            <option value="value2">2</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    Delay
+                    </label>
+                    <div class="relative">
+                        <select id="filter4" class="mr-8 py-2 px-2 pr-3 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option value="">Select one</option>
+                            <option value="value1">1</option>
+                            <option value="value2">2</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="flex container mx-auto">
+        <aside class="w-2/3 flex flex-col">
+            <header class="bg-blue-100 py-4 px-6">
+                <ul class="flex flex-row justify-between">
+                    <li>Työnumero</li>
+                    <li>Luontipvm.</li>
+                    <li>Kuvaus</li>
+                    <li>Linkki</li>
+                </ul>
+            </header>
+            <main class="py-4 px-6">
+                <div class="b">
+                    <ul class="flex flex-row justify-between">
+                        <li> 99794739473</li>
+                        <li>12.11.2019</li>
+                        <li>HUOLTORAKENNUKSEN RAKENTAMINEN</li>
+                        <li><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="flex flex-row justify-between">
+                        <li> 99794739473</li>
+                        <li>12.11.2019</li>
+                        <li>HUOLTORAKENNUKSEN RAKENTAMINEN</li>
+                        <li><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></li>
+                    </ul>
+                </div>
+            </main>
+        </aside>
+        <main class="w-full h-full">
+            <div id="map"></div> 
+        </main>
+    </section>
+    <script src="./js/main.js"></script>
+</body>
+</html>
