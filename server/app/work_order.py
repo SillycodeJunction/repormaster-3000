@@ -3,7 +3,7 @@ import json
 from pydantic import BaseModel
 from datetime import datetime
 
-from reportmaster.worker import Worker
+from app.worker import Worker
 
 
 class WorkOrder(BaseModel):

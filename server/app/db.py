@@ -1,8 +1,8 @@
 import pymysql.cursors
 import os
 
-from reportmaster.work_order import WorkOrder
-from reportmaster.worker import Worker
+from app.work_order import WorkOrder
+from app.worker import Worker
 
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "mysql")
 DB_HOST = os.environ.get("DB_HOST", "localhost")

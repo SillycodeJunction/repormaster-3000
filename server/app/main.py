@@ -1,9 +1,9 @@
-import reportmaster.db as db
+import app.db as db
 
 from fastapi import FastAPI
 
-from reportmaster.work_order import WorkOrder
-from reportmaster.worker import Worker
+from app.work_order import WorkOrder
+from app.worker import Worker
 
 app = FastAPI()
 
@@ -34,7 +34,6 @@ def get_project(id: int):
 def edit_project(id: int, data: dict = None, status: str = None):
     work_order = db.get_work_order_by_id(id)
     if data:
-        print(data)
         work_order.data = data
         db.update_work_order_data(work_order)
     if status:

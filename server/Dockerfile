@@ -1,10 +1,7 @@
-FROM mysql:latest
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-MAINTAINER me
+COPY requirements.txt requirements.txt
 
-ENV MYSQL_DATABASE=reportmaster \
-    MYSQL_ROOT_PASSWORD=password
+RUN pip install -r requirements.txt
 
-ADD schema.sql /docker-entrypoint-initdb.d
-
-EXPOSE 3306
+COPY ./app /app/app
