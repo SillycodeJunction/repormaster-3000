@@ -49,6 +49,19 @@ def add_worker(worker):
     return _insert_sql(sql, worker.dict())
 
 
+def get_workers(role):
+    sql = "SELECT * FROM `worker`"
+    if role:
+        sql += " WHERE role = %(role)s"
+    result = _fetch_all(sql, dict(role=role))
+    workers = [Worker(**data) for data in result]
+    for worker in workers:
+        sql = "SELECT id, status, category FROM `work_order` WHERE worker_id = %(worker_id)s"
+        result = _fetch_all(sql, dict(worker_id=worker.id))
+        worker.projects = result
+    return workers
+
+
 def get_worker_by_id(id):
     sql = "SELECT * FROM `worker` WHERE id = %(id)s"
     data = _fetch_one(sql, dict(id=id))

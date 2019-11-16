@@ -52,3 +52,8 @@ def assign_worker(id: int, workerId: int):
 def add_worker(worker: Worker):
     id = db.add_worker(worker)
     return db.get_worker_by_id(id)
+
+
+@app.get("/workers/")
+def get_workers(role: str = None):
+    return db.get_workers(role)
