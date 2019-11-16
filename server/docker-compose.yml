@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    container_name: db
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=reportmaster
+
+    volumes:
+      - ./db/mysql/data:/var/lib/mysql
+      - ./db/mysql/init:/docker-entrypoint-initdb.d/:ro
+  server:
+    container_name: reportmaster
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=db
+      - DB_PASSWORD=mysql
+    depends_on:
+      - db
