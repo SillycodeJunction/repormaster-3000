@@ -2,13 +2,18 @@ import pymysql.cursors
 import os
 
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "mysql")
+DB_HOST = os.environ.get("DB_HOST", "localhost")
 
-connection = pymysql.connect(host='localhost',
+connection = pymysql.connect(host=DB_HOST,
                              user='root',
                              password=DB_PASSWORD,
                              db='reportmaster',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
+
+def create_work_order():
+    pass
+
 
 try:
     with connection.cursor() as cursor:
