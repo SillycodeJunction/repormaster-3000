@@ -20,3 +20,5 @@ services:
     environment:
       - DB_HOST=db
       - DB_PASSWORD=mysql
+    depends_on:
+      - db
