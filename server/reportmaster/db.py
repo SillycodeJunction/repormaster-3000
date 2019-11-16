@@ -47,11 +47,12 @@ def add_worker(worker):
 def get_worker_by_id(id):
     sql = "SELECT * FROM `worker` WHERE id = %(id)s"
     data = _fetch_one(sql, dict(id=id))
+    if not data:
+        return None
     return Worker(**data)
 
 
 def assign_worker(order_id, worker_id):
-    print(f"{order_id} {worker_id}")
     sql = "UPDATE `work_order` SET `worker_id` = %(worker_id)s WHERE id = %(order_id)s"
     _insert_sql(sql, dict(order_id=order_id, worker_id=worker_id))
     return get_work_order_by_id(order_id)

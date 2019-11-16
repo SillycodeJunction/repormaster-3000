@@ -1,6 +1,5 @@
 import reportmaster.db as db
 
-from datetime import datetime
 from fastapi import FastAPI
 
 from reportmaster.work_order import WorkOrder
