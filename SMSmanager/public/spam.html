@@ -6,7 +6,7 @@
 			let msg = document.getElementById("message").value
 			let nmbr = document.getElementById("phone").value
 			if(nmbr.charAt(0) == 0) {
-				nmbr.substr(1);
+				nmbr = nmbr.slice(1);
 				nmbr = "+358"+nmbr
 			}
 			var xhr = new XMLHttpRequest();

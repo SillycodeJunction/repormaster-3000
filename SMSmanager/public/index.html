@@ -10,7 +10,7 @@
 							msg = "Uusi tehtävä vastaanotettu. Kuvaus: "
 					}
 					if(nmbr.charAt(0) == 0) {
-						nmbr.substr(1);
+						nmbr = nmbr.slice(1);
 						nmbr = "+358"+nmbr
 					}
 					msg =  msg + document.getElementById("message").value
