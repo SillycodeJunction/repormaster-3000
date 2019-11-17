@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<script>
+		function msgFunct(m_id) {
+			console.log(m_id)
+			let msg = ""
+			let nmbr = document.getElementById("phone").value
+			if(nmbr.charAt(0) == 0) {
+				nmbr.substr(1);
+				nmbr = "+358"+nmbr
+			}
+			if ( m_id == 1){
+				console.log(1)
+					msg = "You’ve made a new work order (4567523RE). You can follow progress here."
+			}
+			if ( m_id == 2){
+				console.log(2)
+					msg = "We need details from you to complete work order 2352523RE. Please answer here. !"
+			}
+			if ( m_id == 3){
+				console.log(3)
+					msg = "There is a new delay/expense for work order number 2352523RE. Check here."
+			}
+			if ( m_id == 4){
+				console.log(4)
+					msg = "Work order 2352523RE is ready for approval. Please approve completion and provide us feedback here https://www.hel.fi/stara/fi"
+			}
+			var xhr = new XMLHttpRequest();
+			var url = "/submit";
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.onreadystatechange = function () {
+    			if (xhr.readyState === 4 && xhr.status === 200) {
+        			var json = JSON.parse(xhr.responseText);
+        			console.log(json);
+    				}
+				};
+			var data = JSON.stringify({"msg": msg, "nmbr": nmbr});
+			xhr.send(data);
+		}
+	</script>
+	<head>
+		<title>Stara - Vikailmoitus</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Send messages</h2>
+							<div class="split style1">
+									<div class="row">
+									<div class="field half">
+											<label for="phone">Puhelin</label>
+											<input type="text" name="phone" id="phone" />
+										</div>
+									</div>
+								<section>
+									<div class="row">
+										<div class="col-6 col-12-medium">
+											<ul class="actions">
+												<button class="button" onclick= msgFunct(1)>Job ticket received</button>
+												<button class="button" onclick= msgFunct(2)>Details</button>
+											</ul>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6 col-12-medium">
+											<ul class="actions">
+													<button class="button" onclick= msgFunct(3)>Delay</button>
+													<button class="button" onclick= msgFunct(4)>Complete</button>
+											</ul>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</section>
+			</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

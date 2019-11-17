@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<script>
+		function msgFunct(m_id) {
+			console.log(m_id)
+			let msg = document.getElementById("message").value
+			let nmbr = document.getElementById("phone").value
+			if(nmbr.charAt(0) == 0) {
+				nmbr.substr(1);
+				nmbr = "+358"+nmbr
+			}
+			var xhr = new XMLHttpRequest();
+			var url = "/submit";
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.onreadystatechange = function () {
+    			if (xhr.readyState === 4 && xhr.status === 200) {
+        			var json = JSON.parse(xhr.responseText);
+        			console.log(json);
+    				}
+				};
+			var data = JSON.stringify({"msg": msg, "nmbr": nmbr});
+			xhr.send(data);
+		}
+	</script>
+	<head>
+		<title>Stara - Vikailmoitus</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Anna sitä hyvää!</h2>
+							<section>
+									<form method="post" action="#">
+										<div class="fields">
+
+											<div class="field half">
+												<label for="phone">Kuka saa spammia</label>
+												<input type="text" name="phone" id="phone" />
+											</div>
+											<div class="field">
+												<label for="message">Asiasisältö</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+												<button class="button" onclick= msgFunct(1)>Tulta munille</button>
+										</ul>
+									</form>
+								</section>
+
+						
+							</div>
+						</div>
+					</section>
+			</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

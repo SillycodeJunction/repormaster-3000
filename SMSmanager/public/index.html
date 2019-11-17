@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+		<script>
+				function msgFunct(m_id) {
+					console.log(m_id)
+					let msg = ""
+					let nmbr = document.getElementById("phone").value
+					if ( m_id == 1){
+						console.log(1)
+							msg = "Uusi tehtävä vastaanotettu. Kuvaus: "
+					}
+					if(nmbr.charAt(0) == 0) {
+						nmbr.substr(1);
+						nmbr = "+358"+nmbr
+					}
+					msg =  msg + document.getElementById("message").value
+					var xhr = new XMLHttpRequest();
+					var url = "/submit";
+					xhr.open("POST", url, true);
+					xhr.setRequestHeader("Content-Type", "application/json");
+					xhr.onreadystatechange = function () {
+						if (xhr.readyState === 4 && xhr.status === 200) {
+							var json = JSON.parse(xhr.responseText);
+							console.log(json);
+							}
+						};
+					var data = JSON.stringify({"msg": msg, "nmbr": nmbr});
+					xhr.send(data);
+				}
+			</script>
+	<head>
+		<title>Stara - Vikailmoitus</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="main.css" />
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Vikailmoitus</h2>
+							<p>My text is long and beautiful, as, it has been well documented, are various other parts of my website. I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words.</p>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Nimi</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Sähköposti</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field half">
+												<label for="phone">Puhelin</label>
+												<input type="text" name="phone" id="phone" />
+											</div>
+											<div class="field">
+												<label for="message">Vian kuvaus</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+												<button class="button" onclick= msgFunct(1)>Job ticket received</button>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Osoite</h3>
+											<span>Helsingin kaupunki, PL 1 Pohjoisesplanadi 11-13<br></br> 00099 HELSINGIN KAUPUNKI</span>
+										</li>	
+										<li>
+											<h3>Puhelinvaihde</h3>
+											<span>09 310 1691</span>
+										</li>
+										<li>
+											
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

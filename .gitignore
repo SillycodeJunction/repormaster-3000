@@ -9,3 +9,5 @@ build
 npm-debug.log
 .env
 .DS_Store
+.SMSmanager/.env
+.SMSmanager/node_modules
