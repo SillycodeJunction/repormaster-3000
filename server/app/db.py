@@ -79,7 +79,7 @@ def get_work_orders_by_owner(owner):
 
 
 def assign_worker(order_id, worker_id):
-    sql = "UPDATE `work_order` SET `worker_id` = %(worker_id)s WHERE id = %(order_id)s"
+    sql = "UPDATE `work_order` SET `worker_id` = %(worker_id)s, `status` = 'assigned' WHERE id = %(order_id)s"
     _insert_sql(sql, dict(order_id=order_id, worker_id=worker_id))
     return get_work_order_by_id(order_id)
 
