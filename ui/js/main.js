@@ -1,4 +1,61 @@
+const data = [
+  {
+  "type": "Feature",
+    "properties": {
+        "id": 780019537,
+        "name": "Mäkelänrinteen Lukio",
+        "number": 1,
+        "show_on_map": null
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [24.947900, 60.198420]
+    }
+  },
 
+  {
+  "type": "Feature",
+    "properties": {
+        "id": 780019635,
+        "name": "Hietarannan uimaranta",
+        "number": 2,
+        "show_on_map": null
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [25.111050, 60.216620]
+    }
+  },
+
+  {
+    "type": "Feature",
+      "properties": {
+          "id": 780020226,
+          "name": "Musiikki- ja kulttuurikoulu Sandels",
+          "number": 2,
+          "show_on_map": null
+      },
+      "geometry": {
+          "type": "Point",
+          "coordinates": [24.9196032, 60.1791875]
+      }
+    },
+
+    {
+      "type": "Feature",
+        "properties": {
+            "id": 780020280,
+            "name": "Kaisaniemen Ala-Aste Väistötila, Svante",
+            "number": 2,
+            "show_on_map": null
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [24.947855, 60.173209]
+        }
+      }
+
+]
 
 const map = L.map("map", {
     center: [60.192059, 24.945831],
@@ -16,71 +73,6 @@ let filterall = document.getElementById('filterall');
 let filter1 = document.getElementById('filter1');
 let filter2 = document.getElementById('filter2');
 let filter = document.getElementById('filter1');
-
-const data = [
-  {
-  "type": "Feature",
-    "properties": {
-        "id": 9838733,
-        "name": "Mäkelänrinteen Lukio",
-        "amenity": "Baseball Stadium",
-        "popupContent": "This is where the Rockies play!",
-        "number": 1,
-        "show_on_map": null
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": [24.947900, 60.198420]
-    }
-  },
-
-  {
-  "type": "Feature",
-    "properties": {
-        "name": "Hietarannan uimaranta",
-        "amenity": "Baseball Stadium",
-        "popupContent": "This is where the Rockies play!",
-        "number": 2,
-        "show_on_map": null
-    },
-    "geometry": {
-        "type": "Point",
-        "coordinates": [25.111050, 60.216620]
-    }
-  },
-
-  {
-    "type": "Feature",
-      "properties": {
-          "name": "Musiikki- ja kulttuurikoulu Sandels",
-          "amenity": "Baseball Stadium",
-          "popupContent": "This is where the Rockies play!",
-          "number": 2,
-          "show_on_map": null
-      },
-      "geometry": {
-          "type": "Point",
-          "coordinates": [24.9196032, 60.1791875]
-      }
-    }
-
-]
-
-/*
-
-data.forEach(el => {
-  const app = document.getElementById('list');
-  const ul = document.createElement('ul')
-  ul.setAttribute('class', 'flex flex-row justify-between')
-  const li = document.createElement('li')
-  const list = app.appendChild(ul)
-  list.appendChild(li)
-
-  li.textContent = el.properties.name
-
-});
-
-*/
 
 let marker = L.geoJson(data).addTo(map);
 
