@@ -1,2 +1,2 @@
 # Send demo messages
-run with 'npm start'
+run with `npm start`
