@@ -101,37 +101,66 @@
     </section>
     <section class="flex container mx-auto">
         <aside class="w-2/3 flex flex-col">
-            <header class="bg-blue-100 py-4 px-6">
-                <ul class="flex flex-row justify-between">
-                    <li>Työnumero</li>
-                    <li>Luontipvm.</li>
-                    <li>Kuvaus</li>
-                    <li>Linkki</li>
-                </ul>
-            </header>
-            <main class="py-4 px-6">
-                <div class="b">
-                    <ul class="flex flex-row justify-between">
-                        <li> 99794739473</li>
-                        <li>12.11.2019</li>
-                        <li>HUOLTORAKENNUKSEN RAKENTAMINEN</li>
-                        <li><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="flex flex-row justify-between">
-                        <li> 99794739473</li>
-                        <li>12.11.2019</li>
-                        <li>HUOLTORAKENNUKSEN RAKENTAMINEN</li>
-                        <li><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></li>
-                    </ul>
-                </div>
-            </main>
+            <table class="table-auto">
+            <thead class="border bg-blue-100">
+                <tr class="text-left text-sm">
+                <th class="px-4 py-2">Työnumero</th>
+                <th class="px-4 py-2">Luonti pvm.</th>
+                <th class="px-4 py-2">Kuvaus</th>
+                <th class="px-4 py-2">Linkki</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+                <tr class="border">
+                    <td class="px-4 py-2">99794739473</td>
+                    <td class="px-4 py-2">12.11.2019</td>
+                    <td class="px-4 py-2">HUOLTORAKENNUKSEN RAKENTAMINEN</td>
+                    <td class="px-4 py-2"><img src="external-link-square-alt-solid.svg" width="24px" height="24px"/></td>
+                </tr>
+            </tbody>
+            </table>            
         </aside>
         <main class="w-full h-full">
             <div id="map"></div> 
         </main>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>
